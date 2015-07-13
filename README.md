@@ -4,13 +4,13 @@
 
 ##What you need:
 
-A heroku account with the capability of making 8 Applications.
+* A heroku account with the capability of making 8 Applications.
 
-An Amazon AWS account. You will need an S3 bucket, 2 SQS queues, and SES with decent daily mailing limits.
+* An Amazon AWS account. You will need an S3 bucket, 2 SQS queues, and SES with decent daily mailing limits.
 
-A MongoDB from somewhere (I recommend mongolab.com)
+* A MongoDB from somewhere (I recommend mongolab.com)
 
-A hosted Elastic Search (https://www.found.no/)
+* A hosted Elastic Search (https://www.found.no/)
 
 
 Here is a reference list. You will be using many keys, URLs, DB names, and other parameters across several Heroku configurations, so it is handy to keep your information in one place for quick config.
@@ -112,7 +112,7 @@ In total, you will be making 8 distinct Heroku applications. Make sure you have 
 
   6. change AUDIENCE to your api.webmaker URL
 
-  7. change USER_SUBDOMAIN to “” (empty quotes
+  7. change USER_SUBDOMAIN to “” (empty quotes)
 
   8. fill in your AWS bucket information. don’t worry about DOMAIN/EMULATION
 
