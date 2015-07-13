@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% include "macros.html" %}
+
+{% block title %}{{ gettext("Editor") }}{% endblock %}
+{% block css %}<link rel="stylesheet" href="/css/editor.css">{% endblock %}
+{% block midbar %}{% endblock %}
+{% block body %}
+<div class="admin-sidebar">
+  <div class="search-type">
+    <label class="active" data-field="user">{{ gettext("User") }}</label>
+    <label data-field="title">{{ gettext("Title") }}</label>
+    <label data-field="tags">{{ gettext("Tags") }}</label>
+    <label data-field="tagPrefix">{{ gettext("Prefix") }}</label>
+    <label data-field="id">{{ gettext("ID") }}</label>
+  </div>
+
+  <div class="sidebar-search">
+    <span class="input-wrapper">
+      <input id="admin-search-input" type="text" value="{{username}}">
+      <span class="fa fa-search"></span>
+    </span>
+  </div>
+  <div class="search-filter">
+    <label>{{ gettext("Sort by") }}</label>
+    <select id="filter">
+      <option value="createdAt" selected>{{ gettext("Created at") }}</option>
+      <option value="updatedAt">{{ gettext("Updated at") }}</option>
+      <option value="title">{{ gettext("Title") }}</option>
+    </select>
+  </div>
+  <div class="search-summary"></div>
+  <div class="pagination"><ul></ul></div>
+  <div class="search-results-container"><div id="search-results"></div></div>
+</div>
+<div class="ui-wrapper">
+
+  <!-- Admin options and stuff -->
+  <div id="layout-header" class="ui-row">
+    <div class="g-8">
+      <label>{{ gettext("You are displaying the") }} </label>
+      <select id="layout-select">
+        <option value="index"{% if layout == 'index'%} selected{% endif %}>{{ gettext("Home page") }}</option>
+        <option value="teach"{% if layout == 'teach'%} selected{% endif %}>{{ gettext("Teach page") }}</option>
+      </select>
+      <label> {{ gettext("layout with the prefix") }} </label>
+      <select id="prefix-select">
+        <option value="p"{% if prefix =='p'%} selected{% endif %}>webmaker:p-</option>
+        <option value="teach"{% if prefix == 'teach'%} selected{% endif %}>webmaker:teach-</option>
+        <option value="test"{% if prefix == 'test'%} selected{% endif %}>webmaker:test-</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Warnings, in case sticky numbers are missing -->
+  <div id="warnings" class="ui-row">
+    {% for warning in warnings %}
+    <div class="warning g-8">{{warning}}</div>
+    {% endfor %}
+  </div>
+
+  {% include "gallery.html" %}
+
+</div>
+{% endblock %}
+{% block footer %}{% endblock %}
+{% block require_page %}pages/editor{% endblock %}

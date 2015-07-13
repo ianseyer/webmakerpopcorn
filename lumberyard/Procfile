@@ -1,0 +1,2 @@
+web: node processor.js
+processor: node processor.js

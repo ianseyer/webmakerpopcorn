@@ -1,0 +1,33 @@
+{
+  "name": "lumberyard",
+  "version": "0.0.0",
+  "description": "Process logs",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jbuck/lumberyard.git"
+  },
+  "author": "Jon Buckley <jon@jbuckley.ca>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/jbuck/lumberyard/issues"
+  },
+  "homepage": "https://github.com/jbuck/lumberyard",
+  "dependencies": {
+    "google-spreadsheet": "k88hudson/node-google-spreadsheet",
+    "hyperquest": "0.2.0",
+    "mailgun-validator": "0.0.2",
+    "nodemailer": "0.6.5",
+    "sqs-processor": "^2.0.0",
+    "twilio": "^1.11.0",
+    "webmaker-postalservice": "0.3.11"
+  },
+  "devDependencies": {
+    "should": "3.3.1",
+    "mocha": "^1.19.0",
+    "habitat": "^1.1.0"
+  }
+}

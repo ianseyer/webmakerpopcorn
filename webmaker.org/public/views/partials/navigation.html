@@ -1,0 +1,69 @@
+<nav class="navbar navbar-default navbar-webmaker">
+  <div class="container">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" ng-click="collapseToggle()">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="fa fa-bars fa-lg"></span>
+      </button>
+
+      <a href="/{{lang}}" push-state="true" class="logo webmaker-logo"><img src="/img/logo.png"></a>
+    </div>
+
+    <div class="navbar-collapse text-center-xs" collapse="primaryCollapse">
+      <form class="navbar-form navbar-right">
+        <div class="form-group">
+          <select class="form-control" language-select ng-model="language" redirect="true"></select>
+        </div>
+      </form>
+      <div ng-include="'/views/partials/user-box.html'"></div>
+    </div>
+  </div>
+</nav>
+
+<!-- Secondary nav -->
+<nav class="navbar navbar-inverse navbar-no-header-xs">
+  <div class="container">
+    <div class="navbar-collapse" collapse="secondaryCollapse">
+      <ul class="nav navbar-nav">
+        <li ng-repeat="section in nav.sections" class="nav-icon" ng-class="{ active: isActiveSection(section.id), dropdown: section.dropdown }">
+          <a
+          href="{{baseUrl + section.url}}"
+          push-state="{{section.pushState}}">
+          <span class="fa fa-{{section.icon}}"></span>
+          {{ section.title | i18n }}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Tertiary nav -->
+<nav
+  class="navbar navbar-no-header-xs navbar-tertiary"
+  wm-affix
+  data-offset-top="150"
+  data-offset-height="60"
+  ng-repeat="section in nav.sections"
+  ng-if="section.pages"
+  ng-show="isActiveSection(section.id)">
+
+  <div class="container" ng-class="{'show-xs':section.dropdown}">
+    <div class="navbar-collapse" collapse="tertiaryCollapse">
+      <ul class="nav navbar-nav">
+        <li class="col-3" ng-repeat="page in section.pages">
+          <a href="{{page.external ? page.url : baseUrl + page.url}}" push-state="{{page.pushState}}" ng-class="{active : isActivePage(page.id)}">
+            <span ng-if="!page.doNotTranslate">
+              {{ page.title | i18n }}
+            </span>
+            <span ng-if="page.doNotTranslate">
+              {{ page.title }}
+            </span>
+          </a>
+        </li>
+      </ul>
+      <div ng-include="'/views/partials/user-box.html'" ng-show="affixed"></div>
+    </div>
+  </div>
+</nav>

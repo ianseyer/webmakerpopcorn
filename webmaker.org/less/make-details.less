@@ -1,0 +1,217 @@
+@import "mixins";
+@import "ui";
+@import "components/tooltip";
+
+body {
+  background: #FFF url(../img/bg-stripe.png) repeat;
+}
+
+.ui-row {
+  margin-bottom: 0.5em;
+  padding: 0;
+}
+
+.ui-wrapper {
+  margin: 0 auto;
+  padding: 20px;
+  @media (min-width: @width-medium) {
+    padding: 40px 0;
+  }
+}
+
+/*********************************************************
+* Left column
+*/
+
+.remixed-from {
+  font-size: 0.9em;
+}
+
+.remixed-from-wrapper {
+  margin-right: 0.5em;
+}
+
+.remix-info {
+  display: inline-block;
+  @media (min-width: @width-large) {
+    display: block;
+    background: #E3EAED;
+    margin-right: 0;
+    margin-bottom: 1em;
+    padding: 0.5em;
+  }
+}
+.remixed-by {
+  display: inline-block;
+  @media (min-width: @width-large) {
+    display: block;
+  }
+}
+
+.make-thumbnail {
+  position: relative;
+  display: none;
+  @media (min-width: @width-large) {
+    display: block;
+    height: 150px;
+  }
+  &.thumbnail {
+    // Has a thumbnail image
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+.remixed-by-list {
+  list-style: none;
+  display: inline;
+  padding: 0;
+
+  li {
+    display: inline;
+  }
+  li a {
+    text-decoration: underline;
+  }
+  li:not(:last-child):after {
+    content: ', ';
+  }
+}
+
+/*********************************************************
+* Right column
+*/
+
+.social-media {
+  display: block;
+  @media (min-width: @width-medium) {
+    display: inline-block;
+    margin-left: 2em;
+    a {
+      margin-right: 0.5em;
+    }
+  }
+}
+
+.make-title {
+  font-size: 1.5em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  font-family: "Open Sans Light", sans-serif;
+  font-weight: normal;
+}
+
+.make-user-gravatar {
+  vertical-align: middle;
+  height: 40px;
+  width: 40px;
+  border-radius: 40px;
+  margin-right: 0.5em;
+}
+.make-relative-date {
+  margin-left: 0.5em;
+  font-size: 0.8em;
+  vertical-align: baseline;
+  color: #999;
+}
+
+span.built-with {
+  font-size: 0.9em;
+  padding: 0.2em 0.5em;
+  background: #EEE;
+  border-radius: 3px;
+  color: #999;
+}
+
+.tool-name {
+  text-transform: capitalize;
+}
+
+.make-desc {
+  font-size: 0.9em;
+  line-height: 1.8;
+}
+
+#make-report-toggle {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+#make-report-toggle,
+#make-reported-text {
+  color: @green;
+  display: inline-block;
+  position: relative;
+}
+
+#make-reported-text {
+  margin-left: 5px;
+  &.hide {
+    display: none;
+  }
+}
+
+#make-reported-message,
+#report-not-logged-in,
+#like-not-logged-in,
+#make-report-error {
+  left: 0;
+  top: 30px;
+}
+
+/*********************************************************
+* Links, per-app colours
+*/
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.hidden {
+  display: none;
+}
+.ui-btn {
+  font-size: 0.9em;
+  padding: 0.4em 0.5em 0.3em 0.5em;
+  cursor: pointer;
+}
+.details-thimble {
+  a {
+    color: @blue;
+    &:hover {
+      color: lighten( @blue, 10% );
+    }
+  }
+  .ui-btn {
+    background: @blue;
+    color: #FFF;
+    &:hover {
+      color: #FFF;
+      background: lighten( @blue, 10% );
+    }
+  }
+}
+.details-popcorn {
+  a {
+    color: @green;
+    &:hover {
+      color: lighten( @green, 10% );
+    }
+  }
+  .ui-btn {
+    background: @green;
+    color: #FFF;
+    &:hover {
+      color: #FFF;
+      background: lighten( @green, 10% );
+    }
+  }
+}
+
+/*********************************************************
+* Mobile
+*/

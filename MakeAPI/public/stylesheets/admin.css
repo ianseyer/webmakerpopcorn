@@ -1,0 +1,143 @@
+div.container {
+  margin-top: 30px;
+}
+
+div.data-table-area {
+  width: 95%;
+  margin-left: 2.5%;
+  height: 500px;
+  overflow: hidden;
+  outline: 0px none;
+  position: relative;
+  border: 1px solid gray;
+}
+
+.error-message {
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.spin-hidden {
+  display: none !important;
+}
+
+.delete-make-btn,
+.delete-reports-btn {
+  display: block;
+  margin: 0 auto;
+}
+
+.delete-make-btn {
+  width: 30px;
+}
+
+.red-text {
+  color: #ff0000;
+}
+
+.delete-col: {
+  width: 35px;
+}
+
+div.paging {
+  width: 95%;
+  margin-left: 2.5%;
+  height: 30px;
+  border: 1px solid gray;
+  background: #cccccc;
+}
+
+span.paging-nav {
+  display: inline-block;
+  float: left;
+}
+
+span.nav-paging-settings {
+  display: inline-block;
+  float: right;
+  margin: 3px 10px 0 0;
+}
+
+span.nav-icon {
+  display: inline-block;
+  padding-right: 3px;
+  cursor: pointer;
+}
+
+span.nav-icon-left {
+  margin-left: 4px;
+}
+
+span.nav-go-to {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+input#nav-go-to-page {
+  display: inline-block;
+  height: 12px;
+  width: 35px;
+  margin-top: 3px;
+  font-size: x-small;
+}
+
+.invalid-input {
+  /*
+    !important overrides bootstrap styles
+  */
+  background-color: #ff0000 !important;
+  color: white !important;
+  font-weight: bold !important;
+}
+
+button.nav-btn {
+  height: 24px;
+  width: 45px;
+  margin-top: -5px;
+}
+
+span.nav-page-total-setting {
+  color: #00f;
+  text-decoration: underline;
+  font-size: 1em;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+span.nav-page-total-setting.selected {
+  color: #f00;
+}
+
+input[type=radio] {
+  display: inline-block;
+  float: left;
+}
+
+label.sort-label {
+  display: inline;
+}
+
+.ui-datepicker {
+  background: #FFF;
+}
+
+span.make-id {
+  cursor: pointer;
+}
+
+.remix-count-header {
+  text-align: center;
+}
+
+#remix-count-result {
+  font-size: 1.5em;
+}
+
+.webmaker-logout:hover {
+  cursor: pointer;
+}

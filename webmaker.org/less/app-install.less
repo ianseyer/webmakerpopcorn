@@ -1,0 +1,204 @@
+.install-webmaker-app {
+  @_breakpoint: 740px;
+
+  .navbar-header,
+  .row {
+    margin-right: 0;
+  }
+
+  .navbar-webmaker {
+    border-bottom: none;
+  }
+
+  /*********************************************************
+  * Type
+  */
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 400;
+  h2, strong {
+    font-weight: 500;
+  }
+  h2, p {
+    margin-top: 0;
+  }
+
+  h2 {
+    font-size: 28px;
+    line-height: 1.2;
+    margin-bottom: 15px;
+  }
+  p.small {
+    margin: 0;
+  }
+  #message-sent {
+    margin-bottom: 20px;
+  }
+  .lead {
+    // This looks a little better ~tablet
+    margin-bottom: 20px;
+    max-width: 360px;
+    display: inline-block;
+    @media (min-width: @_breakpoint) {
+      max-width: none;
+    }
+  }
+  .platforms {
+    margin-bottom: 25px;
+  }
+  @media (min-width: 400px) {
+    h2 {
+      margin-bottom: 10px;
+      font-size: 40px;
+    }
+    .lead {
+      font-size: 20px;
+      font-style: normal;
+    }
+  }
+  .nudge {
+    padding-bottom: 23px;
+  }
+
+  /*********************************************************
+  * Grid/Responsive
+  */
+  .mobile-only,
+  .desktop-only {
+    display: none !important;
+  }
+  @media (min-width: @_breakpoint) {
+    .bottom-download-btn {
+      display: none;
+    }
+  }
+
+  .first,
+  .third {
+    .flex-container {
+      .flex-direction(column-reverse);
+    }
+  }
+  .second .flex-container {
+    .flex-direction(column);
+  }
+
+  .outer .flex-container {
+    .flex-display();
+    .align-items(center);
+    .justify-content(center);
+    text-align: center;
+    max-width: 960px;
+    padding: 20px;
+    margin: 0 auto;
+    @media (min-width: @_breakpoint) {
+      padding: 40px 20px;
+      text-align: left;
+      .flex-direction(row);
+    }
+  }
+
+  .outer {
+    color: white;
+    a {
+      color: inherit;
+      text-decoration: underline;
+    }
+  }
+  .first { background: #64A8EE; }
+  .second { background: #76A0EA; }
+  .third { background: #8D8FED; }
+
+  .left, .right {
+    @media (min-width: @_breakpoint) {
+      margin-bottom: 0;
+      width: 50%;
+    }
+  }
+
+  /*********************************************************
+  * UI
+  */
+  .phone-preview {
+    display: inline-block;
+    max-width: 300px;
+    img {
+      width: 100%;
+    }
+    .preview-image {
+      background-color: white;
+    }
+  }
+
+  .btn.btn-neue {
+    position: relative;
+    background: #FFCD36;
+    color: #4B5B62;
+    box-shadow: 0 3px 0 0 #C4A74F;
+    border-radius: 3px;
+    text-transform: uppercase;
+    border: none;
+    font-weight: 500;
+
+    font-size: 15px;
+    padding: 15px 30px;
+    height: 50px;
+    text-decoration: none;
+
+    &:active {
+      border: none;
+      color: #4B5B61;
+      box-shadow: inset 0px 2px 5px rgba(0,0,0,0.2);
+      top: 3px;
+    }
+  }
+
+  /*********************************************************
+  * SMS Form
+  */
+  #sms-form {
+    max-width: 450px;
+    margin: 0 auto;
+    @media (min-width: @_breakpoint) {
+      margin: 0;
+    }
+
+    .twilio-privacy-message {
+      text-align: left;
+    }
+  }
+
+  .intl-tel-input .flag-dropdown {
+    .country-list {
+      color: @black;
+      text-align: left;
+    }
+  }
+
+  .phone-error {
+    background: #EB5C52;
+    color: @white;
+    padding: 5px 10px;
+    border-radius: 3px;
+  }
+  .intl-tel-input {
+    display: table-cell;
+  }
+  .input-group {
+    margin-bottom: 10px;
+  }
+  .input-group .form-control:first-child {
+    border: none;
+    border-radius: 3px;
+    height: 50px;
+    &.invalid {
+      color: #EB5C52;
+    }
+  }
+  .input-group-btn {
+    padding-left: 10px;
+  }
+
+  .footer {
+    margin-top: 0;
+  }
+}

@@ -1,0 +1,297 @@
+.badges {
+
+  /*********************************************************
+  * Makerstrap shims
+  */
+
+  * {
+    .border-box;
+  }
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  .hidden {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+  }
+
+  .container {
+    .ui-wrapper;
+    margin-top: 0;
+  }
+
+  .row {
+    .clearfix;
+  }
+
+  h1, h2 {
+    margin-bottom: 5px;
+  }
+  h1 {
+    font-size: 2.5em;
+  }
+  h2 {
+    font-size: 2.2em;
+  }
+  p {
+    line-height: 1.8;
+  }
+  .panel {
+    background-color: #FFF;
+  }
+
+  .panel-info {
+    border: 1px solid @green;
+  }
+
+  .alert-danger {
+    color: white;
+    background: @red;
+    padding: 10px;
+    margin-bottom: @grid-gutter-width;
+  }
+
+  label {
+    display: block;
+  }
+
+  input.form-control,
+  textarea.form-control {
+    display: block;
+    font-size: inherit;
+    font-family: inherit;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #CCC;
+    &:focus {
+      outline: none;
+      border-color: @blue;
+    }
+  }
+
+  .fa-question-circle {
+    color: fade(@white, 60%);
+    cursor: pointer;
+    &:hover {
+    color: @white;
+    text-decoration: none;
+    }
+  }
+
+  li {
+    line-height: 1.6;
+  }
+  .form-inline {
+    .clearfix;
+  }
+  .form-inline label {
+    display: inline-block;
+  }
+
+  .list-unstyled {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+
+  /*********************************************************
+  * Custom
+  */
+
+  // Type
+  h1, h2 {
+    font-family: 'Open Sans Light', sans-serif;
+    font-weight: normal;
+  }
+
+  // Sections
+  .content section {
+    padding: (@grid-gutter-width * 2) @grid-gutter-width;
+  }
+
+  #badge-not-found {
+    padding: 0;
+    .empty-badge {
+      margin-right: @grid-gutter-width;
+    }
+    .flex-display();
+    .align-items(center);
+    .justify-content(center);
+    @media (min-width: @screen-sm-min) {
+      padding: (@grid-gutter-width * 2);
+      h1 {
+        font-size: 4em;
+      }
+    }
+  }
+
+  #requirements {
+    background: white;
+    position: relative;
+    &:after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      margin-left: -30px;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 30px 30px 0 30px;
+      border-color: @lightgrey transparent transparent transparent;
+    }
+  }
+
+  // Badge
+  .badge {
+    margin-bottom: @grid-gutter-width;
+    text-align: center;
+    img {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+  .badge-tags {
+    line-height: 1.4;
+    .fa-tags {
+      color: @green;
+    }
+  }
+  .badge-tag {
+    &:not(:last-of-type):after {
+      content: ',';
+    }
+  }
+
+  .badge-earned {
+    font-size: 1.4em;
+
+    .btn {
+      margin-right: 10px;
+    }
+    
+    .username {
+      color: @green
+    }
+  }
+
+  // Panels
+
+  .panel-navy {
+    background: @navy;
+    color: #FFF;
+    h1, h2 {
+      font-family: 'Open Sans Light', sans-serif;
+    }
+    h1, h2, h3, h4, label {
+      font-weight: normal;
+    }
+    input.form-control,
+    textarea.form-control {
+      border-color: #555;
+    }
+  }
+
+  .panel-badges {
+    .issuer-avatar {
+      width: 30px;
+      margin-right: 5px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    p {
+      line-height: 1.6;
+    }
+    textarea {
+      max-width: 700px;
+      min-height: 80px;
+    }
+    input { margin: 0; max-width: 700px; }
+    form.backpack {
+      display: inline-block;
+      margin-left: 10px;
+    }
+    .form-group, h2, h1 {
+      margin: 0 0 @grid-gutter-width 0;
+    }
+    label {
+      margin-bottom: 10px;
+    }
+    .form-inline label {
+      margin-right: 10px;
+    }
+    .panel-body {
+      padding: (@grid-gutter-width * 2);
+    }
+  }
+
+  .claim-code-container {
+    width: 100%;
+  }
+
+  .claim-code-button-login,
+  .claim-code-button-logout {
+    margin-top: 5px;
+    margin-bottom: 6px;
+  }
+
+  .button-link {
+    color: #27AAE1;
+    border: none;
+    background: none;
+    border-radius: 2px;
+    padding: 6px 10px;
+    &:hover {
+      background: #F5F5F5;
+    }
+    &:active {
+      background: darken(#F5F5F5, 5%);
+    }
+    &:hover,
+    &:active {
+      color: #177BA5;
+      border: solid 1px;
+      margin-top: 4px;
+      margin-left: -1px;
+      margin-bottom: 5px;
+    }
+  }
+
+  // Close button
+  .close-panel {
+    background: none;
+    float: right;
+    color: fade(#FFF, 80%);
+    margin-top: -20px;
+    margin-right: -20px;
+    &:hover {
+      color: #FFF;
+    }
+  }
+
+  // Spacing overrides
+  #content,
+  footer,
+  .make-footer {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+}
+
+@import 'badges-list';

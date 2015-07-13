@@ -1,0 +1,68 @@
+{% raw %}
+<!doctype html>
+
+<html lang="{{lang}}" dir="{{direction}}" xmlns:ng="http://angularjs.org" ng-app="webmakerApp" id="ng-app">
+  <head>
+    <script src="//cdn.optimizely.com/js/206878104.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title ng-bind-html="title | i18n"></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+
+    <!-- For sharing & search engines -->
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://webmaker.org/img/logo-og.png" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="1400" />
+    <meta property="og:site_name" content="Webmaker" />
+    <meta property="og:determiner" content="" />
+    <meta property="og:locale" content="{{ lang | openGraphLocale }}" />
+    <meta ng-repeat="language in languages track by $index" property="og:locale:alternate" content="{{ language | openGraphLocale }}" />
+    <!-- TODO update og:title maybe add an angular factory to update all of meta -->
+    <meta property="og:title" content="Mozilla Webmaker Web Literacy Resources" />
+    <meta property="og:description" content="We're a global community dedicated to teaching digital skills and web literacy. We explore, tinker and create together to build a web that's open and made by everyone." />
+    <meta property="og:url" content="https://webmaker.org{{ currentPath }}" />
+
+    <link rel="canonical" href="https://webmaker.org{{ currentPath }}" />
+    <meta property="description" content="We're a global community dedicated to teaching digital skills and web literacy. We explore, tinker and create together to build a web that's open and made by everyone." />
+    <!-- /sharing -->
+
+    <link rel="icon" type="image/png" href="/img/favicon.ico">
+    <!-- We have to do this to make sure we display the page when localization has been loaded. -->
+    <style>
+      html, body {
+        display: none;
+      }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700|Lato:900|Fira+Sans:700">
+    <!-- Note: this file is rendered with Less middleware can be found at /less/explore/main.less -->
+    <link rel="stylesheet" ng-href="/css/angular/main.{{direction}}.css">
+</head>
+<body id="{{currentPageId}}">
+
+  <header class="explore-nav" ng-include="'/views/partials/navigation.html'" ng-controller="navigationController"></header>
+  <div id="locale-banner" ng-controller="localebannerController" ng-hide="bannerBool">
+    <div class="container">
+      <p><span id="locale-btn-cancel" ng-click="removeBanner()" class="fa fa-times"></span>{{ didYouKnowLocale }} <a id="locale-btn-accept" ng-click="acceptRedirect()">{{ langmap[listLang[0]].nativeName }}</a>?</p>
+    </div>
+  </div>
+  <section class="main">
+    <div class="explore-main" ng-view=""></div>
+  </section>
+  {% endraw %}
+  {# From here on, everything is rendered with nunjucks #}
+  <script src="/{{ localeInfo.lang }}/angular-config.js"></script>
+  {% if ga_account %}
+  <script id="google-analytics-js" src="/js/lib/google-analytics.js"
+    data-ga-account="{{ ga_account }}"
+    data-ga-domain="{{ ga_domain }}"
+    async>
+  </script>
+  {% endif %}
+  <script src="https://login.persona.org/include.js"></script>
+  <script src="/compiled/dependencies.min.js"></script>
+  <script src="/compiled/app.min.js"></script>
+
+</body>
+</html>

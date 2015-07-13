@@ -1,0 +1,31 @@
+{% macro makeTags() %}
+  {% if make.rawTags.length %}
+  <div class="tag-container">
+    <span class="fa fa-tags" title="tags"></span>
+    {% for tag in make.prettyTags %}
+      {%- if loop.index <= 10 %}
+      <a class="tag" href="/t/{{tag}}">{{tag}}</a>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+{% endmacro %}
+
+{% macro likeText() %}
+  <span class="like-count">{{ make.likes.length }} </span>
+  <span class="like-text">
+    {% if make.likes.length %}
+      {{ "Like-1" | gettext if make.likes.length == 1 else "Like-n" | gettext }}
+    {% else %}
+      {{ "Like-0" | gettext }}
+    {% endif %}
+  </span>
+{% endmacro %}
+
+{% macro likeIcon() %}
+  {% if make.hasBeenLiked %}
+    <span data-make-id="{{ make.id }}" class="make-like-toggle fa fa-heart"></span>
+  {% else %}
+    <span data-make-id="{{ make.id }}" class="make-like-toggle fa fa-heart-o"></span>
+  {% endif %}
+{% endmacro %}

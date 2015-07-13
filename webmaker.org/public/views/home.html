@@ -1,0 +1,137 @@
+<div ng-show="userDel" class="alert alert-info">{{ 'user_deleted' | i18n }}
+</div>
+<div id="home-splash">
+  <div class="home-blue home-panel">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 col-md-5">
+          <figure class="devices">
+            <img src="/img/home/desktop.svg" alt="Desktop computer" class="desktop"/>
+            <img src="/img/home/mobile.svg" alt="Mobile phone" class="mobile"/>
+            <img src="/img/home/tablet.svg" alt="Tablet computer" class="tablet"/>
+          </figure>
+        </div>
+        <section class="col-sm-8 col-md-6">
+          <h2>{{ 'The web is yours' | i18n }}</h2>
+
+          <p class="lead">
+            {{ 'Learn to build it with Mozilla.' | i18n }}
+          </p>
+
+          <form id="home-start-form">
+            <input type="email" class="home-email-field" placeholder="{{ 'Email address' | i18n }}"/>
+            <button class="btn btn-default">
+              {{ 'Start creating' | i18n }}
+            </button>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+  <section class="home-values">
+    <div class="container">
+      <h3>
+        {{ 'Our values' | i18n }}
+      </h3>
+
+      <p class="lead">
+        {{ 'Webmaker helps people across the world' | i18n }}
+      </p>
+
+      <div class="row">
+        <div class="col-sm-7 col-md-5 col-lg-5 col-lg-offset-1">
+          <ul class="values-list">
+            <li class="value-free">
+              <h4>{{ 'Free' | i18n }}</h4>
+
+              <p>{{ 'Mozilla is a nonprofit organization' | i18n }}</p>
+            </li>
+            <li class="value-local">
+              <h4>{{ 'Local' | i18n }}</h4>
+
+              <p>{{ 'We all use the web in different ways.' | i18n }}</p>
+            </li>
+            <li class="value-more-than-code">
+              <h4>{{ 'More than code' | i18n }}</h4>
+
+              <p>
+                {{ 'We believe that digital literacy is more than just learning to code.' | i18n }}
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-4 col-sm-offset-1 col-md-7 col-md-offset-0 col-lg-6">
+          <figure class="home-globe">
+            <img src="/img/home/yellow-earth.svg" alt="Globe" height="300" width="300"/>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="home-jump-in">
+    <div class="container">
+      <h3>{{ 'Jump right in' | i18n }}</h3>
+
+      <p class="lead">
+        {{ 'Discover how you can build and share the web.' | i18n }}
+      </p>
+      <ul class="row">
+        <li class="col-sm-4">
+          <figure>
+            <a href="https://webmaker.org/{{ lang }}/explore/">
+              <img src="/img/home/gallery-md-icon.svg" alt="" width="154" height="120"/>
+            </a>
+          </figure>
+          <h4>{{ 'Explore Webmaker' | i18n }}</h4>
+
+          <p>
+            {{ 'Investigate the tools, learning resources' | i18n }}
+            <a href="https://webmaker.org/{{ lang }}/explore/">
+              {{ 'Explore now' | i18n }}
+            </a>
+          </p>
+        </li>
+        <li class="col-sm-4">
+          <figure>
+            <a href="https://training.webmakerprototypes.org/">
+              <img src="/img/home/learntoteach-md-icon.svg" alt="" width="152" height="120"/>
+            </a>
+          </figure>
+          <h4>{{ 'Learn to Teach' | i18n }}</h4>
+
+          <p>
+            {{ 'Study at your own pace' | i18n }}
+            <a href="https://training.webmakerprototypes.org/">
+              {{ 'Get training' | i18n }}
+            </a>
+          </p>
+        </li>
+        <li class="col-sm-4">
+          <figure>
+            <a href="https://events.webmaker.org/">
+              <img src="/img/home/get-together-md-icon.svg" alt="" width="155" height="120"/>
+            </a>
+          </figure>
+          <h4>{{ 'Get Together' | i18n }}</h4>
+
+          <p>
+            {{ 'Build the web with others' | i18n }}
+            <a href="https://events.webmaker.org/">
+              {{ 'View events' | i18n }}
+            </a>
+          </p>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <footer class="cta-footer">
+    <p>
+      {{ 'Build and share the web with Mozilla.' | i18n }}
+      <button class="btn btn-default" wm-join-webmaker>
+        {{ 'Start Creating' | i18n }}
+      </button>
+    </p>
+  </footer>
+</div>
+<!-- Footer -->
+<div ng-include="'/views/partials/footer.html'"></div>

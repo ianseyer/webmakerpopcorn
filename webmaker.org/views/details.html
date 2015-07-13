@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="csrf-token" content="{{ csrf }}">
+  <link media="screen" rel="stylesheet" href="/css/style.css">
+  <link media="screen" rel="stylesheet" href="/css/make-details.css">
+</head>
+<body class="details-{{tool}}" data-tool="{{tool}}" data-url="{{url}}">
+  <div id="content">
+    {% if remixList %}
+      <div class="ui-wrapper">
+        <div class="ui-row">
+          <!-- LH side of make-details -->
+          <div class="g-2 remixed-from">
+
+            <div class="remix-info">
+              {% if remixedFromData %}
+              <div class="remixed-from-wrapper">
+                <span class="remixed-from-txt">{{ gettext("Remixed from") }}</span>
+                <a target="_blank" href="{{ remixedFromData.url }}"><span class="remixed-user">@{{ remixedFromData.username }}</span></a>
+              </div>
+              {% endif %}
+              <div class="make-type-{{type}}">
+                <div class="make-thumbnail{% if thumbnail %} thumbnail" style="background-image:url({{ thumbnail }}){% endif %}"></div>
+              </div>
+            </div>
+
+            {% if remixList.length %}
+            <div class="remixed-by">
+              {{remixCount}} by
+              <ul class="remixed-by-list">
+                {% for remix in remixList %}
+                <li><a target="_blank" href="{{remix.url}}">@{{remix.username}}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+
+          </div>
+
+          <!-- RH side of make-details -->
+          <div class="g-6 make-details-deets">
+
+            <div class="ui-row">
+              <h1 class="make-title">{{ title }}</h1>
+            </div>
+
+            <div class="ui-row">
+              <div class="make-details">
+                <img class="make-user-gravatar" src="https://secure.gravatar.com/avatar/{{ emailHash }}?s=40d=https%3A%2F%2Fstuff.webmaker.org%2Favatars%2Fwebmaker-avatar-44x44.png" alt="{{ username}}">
+                <span class="made-by">
+                  {{ gettext("Made by") }}
+                  <a target="_blank" class="make-username" href="/user/{{ username }}">@{{ username }}</a>
+                  <span class="make-relative-date">{{ createdAt }}</span>
+                  <span data-make-id="{{ id }}"
+                        title="Report Inappropriate Make"
+                        id="make-report-toggle"
+                        class="fa {{ 'fa-flag' if userReported else 'fa-flag-o' }}">
+                    <span id="report-not-logged-in" class="tooltip hide">{{ gettext("Log in to report") }}</span>
+                    <span id="make-reported-message" class="tooltip hide">{{ gettext("Make successfully reported") | safe }}</span>
+                    <span id="make-report-error" class="tooltip hide">{{ gettext("Reporting error") | safe }}</span>
+                  </span>
+                  <span id="make-reported-text" class="{{ '' if userReported else 'hide' }}">{{ gettext("Reported") }}</span>
+                </span>
+
+                <span class="social-media">
+                {% set tweetText = gettext("TweetText") %}
+                   <a href="https://plus.google.com/share?url={{url}}" id="share-gplus" target="_blank" class="btn"><span class="fa fa-google-plus icon"></span> {{ gettext("Share") }}</a>
+                   <a id="share-twitter" href="https://twitter.com/intent/tweet?text={{tweetText }}{{url}}&hashtags=Webmaker&related=webmaker&url={{url}}" target="_blank" class="share btn"><span class="fa fa-twitter"></span> {{ gettext("Share") }}</a>
+                  <span id="share-container" class="hidden">
+                    <a target="_blank" id="google-btn"></a>
+                    <a target="_blank" id="twitter-btn"></a>
+                    <a target="_blank" id="fb-btn"></a>
+                  </span>
+                </span>
+              </div>
+            </div>
+
+
+            <p class="built-with"><span class="built-with">{{ gettext("Built with") }}</span>
+              <span class="icon-{{tool}}"></span>
+              <a target="_blank" href="{{remixurl}}" class="tool-name">{{ tool }}</a>
+              <span data-make-id="{{ id }}"
+                    class="fa make-like-toggle details-page-icon make-like-details {{ 'fa-heart' if hasBeenLiked else 'fa-heart-o' }}" >
+                <span id="like-not-logged-in" class="tooltip hide">{{ gettext("Log in to like") }}</span>
+              </span>
+              <span class="like-count">{{ likes.length }} </span>
+              <span class="like-text">
+                {% if likes.length %}
+                  {{ gettext("Like-1") if likes.length == 1 else gettext("Like-n") }}
+                {% else %}
+                  {{ gettext("Like-0") }}
+                {% endif %}
+              </span>
+            </p>
+
+            <p class="make-desc">{{ description }}</p>
+
+          </div>
+        </div>
+      </div><!-- ui-wrapper -->
+    </div><!-- content -->
+    {% else %}
+    <div class="make-error">
+      {{error}}
+    </div>
+    {% endif %}
+  </div>
+  <script src="{{ personaHostname }}/include.js"></script>
+  <script src="/bower_components/webmaker-login-ux/dist/min/webmakerLogin.min.js"></script>
+  <script src="/bower_components/requirejs/require.js" data-main="/js/pages/details"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+.chevron-list {
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: block;
+    font-size: 1em;
+    margin-bottom: 1rem;
+
+    a {
+      &:hover {
+        color: #347F9E;
+        text-decoration: none;
+      }
+      &::after {
+        .icon(@fa-var-chevron-right);
+        font-size: 0.8em;
+        margin-left: 1rem;
+      }
+    }
+  }
+}
+
+.chevron-list-style {
+  list-style: none;
+  li {
+    position: relative;
+    &::before {
+      .icon(@fa-var-chevron-right);
+      color: @brand-primary;
+      font-size: 2rem;
+      left: -3rem;
+      position: absolute;
+    }
+    li {
+      &::before {
+        content: '';
+      }
+    }
+  }
+}
+
+ol.big-numbers {
+  counter-reset: big-numbers;
+  list-style: none;
+  li {
+    counter-increment: big-numbers;
+    position: relative;
+    &::before {
+      color: @brand-primary;
+      content: counter(big-numbers) '. ';
+      font-size: 2em;
+      left: -1.5em;
+      position: absolute;
+      top: -0.25em;
+    }
+    li {
+      counter-increment: none;
+      &::before {
+        content: '';
+      }
+    }
+  }
+}

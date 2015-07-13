@@ -1,0 +1,183 @@
+@lightnavy: lighten(@navy, 6%);
+@yellow: #F5A906;
+@blue: #27AAE1;
+@red: #E5352D;
+@green: #03845C;
+
+.navigation-container {
+  font-size: 14px;
+  .ui-wrapper {
+    margin-top: 0;
+  }
+}
+
+#main-navigation-container{
+  background: @navy;
+}
+
+.navigation-wrapper {
+  position: relative;
+  margin: 0;
+  @media (min-width: @width-large) {
+    width: 100%;
+    margin: 0 auto;
+    .border-box;
+  }
+}
+
+.navigation-list {
+  .border-box;
+  list-style: none;
+  padding: 0;
+  position: relative;
+  color: @white;
+  background-color: @navy;
+  @media screen and (min-width: @screen-lg-min){
+    margin-left: -6.8rem;
+  }
+  .nav-icon {
+    width: 100%;
+    text-align: left;
+    display: inline-block;
+    margin: 0;
+    @media screen and (min-width: @screen-sm-min){
+      width: 24.8%;
+      text-align: center;
+      margin-left: -0.4rem;
+    }
+    @media screen and (min-width: @screen-lg-min){
+      width: 16%;
+      text-align: left;
+      margin-left: -0.4rem;
+    }
+    &:hover, &:active, &:focus, a.active {
+      background-color: @lightnavy;
+      .fa {
+        box-shadow: none;
+      }
+      .fa-random {
+        background-color: @yellow;
+      }
+      .fa-hand-o-up {
+        background-color: @blue;
+      }
+      .fa-map-marker {
+        background-color: @red;
+      }
+      .fa-book {
+        background-color: @green;
+      }
+    }
+    a {
+      height: auto;
+      display: block;
+      padding: 1.2rem 1.8rem;
+      &:link, &:visited {
+        color: fade(@white, 80);
+      }
+      &:hover, &:active, &:focus {
+        color: @white;
+        text-decoration: none;
+      }
+      span.fa {
+        margin-right: 0.8rem;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.2) inset;
+        color: #FFF;
+        border-radius: 20px;
+        font-size: 12px;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.fa {
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#navigation-secondary {
+  &.collapsing {
+    height: 119px;
+  }
+}
+#navigation-primary {
+  &.collapsing {
+    height: 216px;
+  }
+}
+
+#navigation-secondary,
+#navigation-primary {
+
+  height: auto;
+  transition: height 0.35s ease 0s;
+  display: block;
+
+  @media (max-width: @width-medium) {
+    &.collapse {
+      height: 0;
+      overflow: hidden;
+    }
+  }
+}
+
+#expanded-navigation {
+  .clearfix;
+  position: relative;
+  background: @navy;
+  display: none;
+  @media (min-width: @width-medium) {
+    padding: 20px 0;
+  }
+  &.on {
+    display: block;
+    @media screen  and (min-width: @screen-sm-min){
+      display: none;
+    }
+  }
+  .navigation-wrapper {
+    left: 0;
+  }
+  .navigation-list {
+    background-color: @navy;
+    &.collapsed {
+      display: block;
+    }
+    a {
+      padding: 0;
+      line-height: 1.2;
+      display: block;
+      font-size: 1.4rem;
+      padding: 1.2rem 1.8rem;
+    }
+    li {
+      display: block;
+      color: fade(@white, 80%);
+      &:hover {
+        color: @white;
+      }
+    }
+  }
+  #navigation-expanded-close {
+    position: absolute;
+    cursor: pointer;
+    right: 20px;
+    top: 15px;
+    background: darken(@navy, 2%);
+    border: none;
+    display: block;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    color: @white;
+  }
+}

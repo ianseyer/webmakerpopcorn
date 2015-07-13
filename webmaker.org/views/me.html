@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block title %}{{ gettext("Me") }}{% endblock %}
+{% block midbar %}
+  <div class="ui-wrapper">
+    <div class="me-info">
+      {% if username %}
+      <h1 class="me-title">{{username}}, {{ gettext("these are your makes:") }}</h1>
+      {% else %}
+      <h1>{{ gettext("You are not signed in") }}</h1>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
+{% block body %}
+<div class="ui-wrapper {% if not showPagination %} no-page {% endif %}">
+  {% if username %}
+  <div class="main-gallery search-gallery" data-total-hits="{{totalHits}}" data-limit="{{limit}}">
+    <div class="gutter-sizer"></div>
+    {% for make in makes %}
+      {% if make %}
+        {% include ("make-templates/make-me.html") %}
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if makes.length == 0%}
+  <div class="no-makes">{{ gettext("noMakes") | instantiate }}</div>
+  {% else %}
+    <div class="ui-row pagination"><ul></ul></div>
+  {% endif %}
+</div>
+{% endblock %}
+{% block require_page %}pages/me{% endblock %}

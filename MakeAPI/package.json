@@ -1,0 +1,51 @@
+{
+  "name": "makeapi",
+  "version": "1.2.17",
+  "description": "MakeAPI for Webmaker",
+  "main": "./lib/api.js",
+  "scripts": {
+    "test": "grunt && mocha --reporter spec",
+    "postinstall": "bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mozilla/MakeAPI.git"
+  },
+  "author": "Webmaker Product Team <webmaker-staff@mozillafoundation.org>",
+  "license": "MPL-2.0",
+  "dependencies": {
+    "async": "0.2.9",
+    "bower": "1.4.1",
+    "express": "3.4.5",
+    "habitat": "1.1.0",
+    "hatchet": "0.1.0",
+    "hawk": "2.2.3",
+    "helmet": "0.1.2",
+    "hyperquest": "^0.3.0",
+    "less-middleware": "0.1.15",
+    "makeapi-client": "0.5.28",
+    "messina": "0.1.1",
+    "mongoose": "3.5.2",
+    "mongoose-validator": "0.2.1",
+    "mongoosastic": "0.2.2",
+    "newrelic": "1.5.5",
+    "node-statsd": "0.0.7",
+    "nunjucks": "0.1.9",
+    "uuid": "1.4.1",
+    "webmaker-auth": "0.1.4"
+  },
+  "devDependencies": {
+    "bower": "1.3.8",
+    "grunt": "1.4.1",
+    "grunt-contrib-csslint": "0.4.0",
+    "grunt-contrib-jshint": "0.11.0",
+    "grunt-jsbeautifier": "0.2.8",
+    "grunt-jscs": "1.5.0",
+    "mocha": "1.9.0",
+    "mofo-style": "1.0.1"
+  },
+  "engines": {
+    "node": "0.10",
+    "npm": ">=1.2.10"
+  }
+}

@@ -1,0 +1,132 @@
+/*********************************************************
+ * MIXINS
+ */
+
+.border-box {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.border-radius (@radius: 0) {
+  -webkit-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.border-top-radius (@radius: 5px) {
+  -webkit-border-top-left-radius: @radius;
+  -webkit-border-top-right-radius: @radius;
+  border-top-left-radius: @radius;
+  border-top-right-radius: @radius;
+}
+
+.box-shadow (@first, @second, @third, @colour) {
+  -webkit-box-shadow: @first @second @third @colour;
+  -moz-box-shadow:    @first @second @third @colour;
+  box-shadow:         @first @second @third @colour;
+}
+
+.perspective (@p: 1000) {
+  -webkit-perspective: @p;
+  -moz-perspective: @p;
+  perspective: @p;
+}
+
+.backface-visibility (@value: hidden) {
+  -webkit-backface-visibility: @value;
+  -moz-backface-visibility: @value;
+  backface-visibility: @value;
+}
+
+.rotateX (@deg: 180deg) {
+  -webkit-transform: rotateX(@deg);
+  -moz-transform: rotateX(@deg);
+  transform: rotateX(@deg);
+}
+
+.rotateY (@deg: 180deg) {
+  -webkit-transform: rotateY(@deg);
+  -moz-transform: rotateY(@deg);
+  transform: rotateY(@deg);
+}
+
+.rotate (@deg: 180deg) {
+  -webkit-transform: rotate(@deg);
+  -moz-transform: rotate(@deg);
+  transform: rotate(@deg);
+}
+
+.threedee-transition (@time: 0.3s) {
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: transform @time;
+  -moz-transition: transform @time;
+  transition: transform @time;
+}
+
+.clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.transition (@transition) {
+  -webkit-transition: @transition;
+  -moz-transition:    @transition;
+  -ms-transition:     @transition;
+  -o-transition:      @transition;
+}
+
+.icon(@fa-icon) {
+  content: @fa-icon;
+  .fa();
+}
+
+// Flexbox
+// http://css-tricks.com/using-flexbox/
+
+.display-flex {
+  display: -webkit-box;      // OLD - iOS 6-, Safari 3.1-6
+  display: -moz-box;         // OLD - Firefox 19- (buggy but mostly works)
+  display: -ms-flexbox;      // TWEENER - IE 10
+  display: -webkit-flex;     // NEW - Chrome
+  display: flex;
+}
+
+.flex (@amount) {
+  -webkit-box-flex: @amount;      // OLD - iOS 6-, Safari 3.1-6
+  -moz-box-flex: @amount;         // OLD - Firefox 19-
+  -webkit-flex: @amount;          // Chrome
+  -ms-flex: @amount;              // IE 10
+  flex: @amount;
+}
+
+// Cross-axis Alignment
+// - applies to: flex containers
+// flex-start | flex-end | center | baseline | stretch
+.align-items(@align: stretch) {
+  -webkit-align-items: @align;
+  -moz-align-items: @align;
+  -ms-align-items: @align;
+  align-items: @align;
+}
+
+.justify-content(@align: stretch) {
+  -webkit-justify-content: @align;
+  -moz-justify-content: @align;
+  -ms-justify-content: @align;
+  justify-content: @align;
+}
+
+.flex-direction(@dir: row) {
+  -webkit-flex-direction: @dir;
+  -moz-flex-direction: @dir;
+  -ms-flex-direction: @dir;
+  flex-direction: @dir;
+}

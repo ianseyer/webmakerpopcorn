@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="{{ localeInfo.lang }}" dir="{{ localeInfo.direction }}">
+<head>
+  <meta charset="utf-8">
+  {{ newrelic.getBrowserTimingHeader() | safe }}
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="csrf-token" content="{{ csrf }}">
+  <meta name="persona-email" content="{{ email }}">
+  <meta name="maker-id" content="{{ makerID }}">
+  <meta name="make-endpoint" content="{{ makeEndpoint }}">
+
+<!-- For sharing & search engines -->
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://webmaker.org/img/logo-og.png" />
+  <meta property="og:image:width" content="1400" />
+  <meta property="og:image:height" content="1400" />
+  <meta property="og:site_name" content="Webmaker" />
+  <meta property="og:determiner" content="" />
+  <meta property="og:locale" content="{{ localeInfo.lang | replace('-', '_') }}" />
+  {% for language in languages %}
+  <meta property="og:locale:alternate" content="{{ language | replace('-', '_') }}" />{% endfor %}
+  <meta property="og:title" content="{% block title %}{% endblock %} - {{ gettext("Mozilla Webmaker") }}" />
+  <meta property="og:description" content="We're a global community dedicated to teaching digital skills and web literacy. We explore, tinker and create together to build a web that's open and made by everyone." />
+  <meta property="og:url" content="https://webmaker.org/{{ localeInfo.lang }}{{ currentPath }}" />
+
+  <link rel="canonical" href="https://webmaker.org/{{ localeInfo.lang }}{{ currentPath }}" />
+  <meta property="description" content="We're a global community dedicated to teaching digital skills and web literacy. We explore, tinker and create together to build a web that's open and made by everyone." />
+  <!-- /sharing -->
+
+  <link rel="login" content="{{ loginAPI }}">
+
+  <title>{% block title %}{% endblock %} - {{ gettext("Mozilla Webmaker") }}</title>
+  {% block css %}{% endblock %}
+  <link href="//mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.{{ localeInfo.direction }}.css">
+
+  <!--[if lte IE 9]><link rel="stylesheet" href="/css/warning.css"><![endif]-->
+
+  <link rel="icon" type="image/png" href="/img/favicon.ico">
+  <!-- For JS error tracking purposes -->
+  <script src="/js/lib/error-track.js" async></script>
+</head>
+
+<body id="{{ page }}" {% if view %}class="{{ view }}"{% endif %}>
+
+<div id="browser-warning">
+  <p>{{ gettext("browserUpgradeWarning") | safe }}</p>
+</div>
+
+<div class="webmaker-outer-wrapper">
+
+  {% block header %}
+  <div id="webmaker-nav">
+    <nav class="navbar navbar-webmaker">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle" nav-toggle>
+            <span class="sr-only">Toggle navigation</span>
+            <span class="fa fa-bars fa-lg"></span>
+          </button>
+          <a href="/{{localeInfo.lang}}" class="logo webmaker-logo">
+            <img src="/img/logo.png" alt="{{ gettext("Mozilla Webmaker") }}">
+          </a>
+        </div>
+
+        <div id="navigation-secondary" class="navbar-collapse collapse">
+          <div class="navbar-form navbar-right">
+            {% include "webmaker-language-picker/template/supportedLanguages.html" %}
+          </div>
+
+          <div class="navbar-form navbar-right">
+            <button class="btn btn-secondary-nav signin-button navbar-button navbar-right">{{ gettext("Sign in") }}</button>
+            <button class="btn btn-primary join-button navbar-button navbar-right">{{ gettext("Join Webmaker") }}</button>
+          </div>
+
+          <ul class="nav navbar-nav navbar-right user-info-dropdown hidden">
+            <li class="dropdown">
+              <a class="navbar-user-info dropdown-toggle" data-toggle="dropdown">
+                <img class="user-info-avatar" data-avatar>
+                {{ gettext("Hi") }} <strong data-username></strong>
+                <span class="hidden label label-primary" data-admin>admin</span>
+                <span class="hidden label label-info" data-supermentor>supermentor</span>
+                <span class="hidden label label-warning" data-mentor>mentor</span>
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="{{ webmaker }}/{{ localeInfo.lang }}/me">
+                    <span class="fa fa-fw fa-th-large"></span> My makes
+                  </a>
+                </li>
+                <li>
+                  <a data-profile data-href-template="{{ webmaker }}/{{ localeInfo.lang }}/user/{username}">
+                    <span class="fa fa-fw fa-user"></span> My profile
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ loginAPI }}/{{ localeInfo.lang }}/account">
+                    <span class="fa fa-fw fa-cog"></span> My settings
+                  </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a class="logout-button">
+                    <span class="fa fa-fw fa-sign-out"></span> Sign out
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include "components/navigation.html" %}
+
+  {% endblock %}
+  <div id="midbar">{% block midbar %}{% endblock %}</div>
+
+  <main id="content" class="content {% if page != 'events' %} clearfix {% endif %}">{% block body %}{% endblock %}</main>
+
+  <footer class="footer">
+
+    {% block footer %}
+    <div id="footer-actions">
+      {% if layout %}
+      <a class="load-more">{{ gettext("Load more") }}
+        <span class="fa fa-angle-down"></span></a>
+      {% endif %}
+    </div>
+    {% endblock %}
+
+    <div class="partnerWrapper">
+      <nav class="navbar-footer">
+        <div class="container">
+          <ul>
+            <li><a href="/{{localeInfo.lang}}/about">{{ gettext('About') }}</a></li>
+            <li><a href="/{{localeInfo.lang}}/mentor">{{ gettext('Teach') }}</a></li>
+            <li>
+              <a href="https://sendto.mozilla.org/page/contribute/join-mozilla?source=join_link">
+                {{ gettext('Donate') }}
+              </a>
+            </li>
+            <li><a href="mailto:help@webmaker.org">{{ gettext('Contact') }}</a></li>
+            <li><a href="https://www.mozilla.org/privacy/websites">{{ gettext('Privacy') }}</a></li>
+            <li><a href="/{{localeInfo.lang}}/terms">{{ gettext('Legal') }}</a></li>
+            <li>
+              <a href="https://support.mozilla.org/products/webmaker">
+                {{ gettext('Help') }}
+              </a>
+            </li>
+          </ul>
+
+          <ul class="secondary">
+            <li><span class="fa fa-twitter"></span>
+              <a href="https://twitter.com/webmaker">
+                @webmaker
+              </a>
+            </li>
+            <li><span class="fa fa-file-text-o"></span>
+              <a href="https://blog.webmaker.org">
+                {{ gettext('Blog') }}
+              </a>
+            </li>
+          </ul>
+
+          <div class="moz-logo">
+            <a href="https://mozilla.org/">
+              <img src="/img/logo-mozilla-white.png" alt="mozilla logo" height="41" width="100"/>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </footer>
+
+  <div class="mobile"></div>
+</div>
+
+<script src="{{ personaHostname }}/include.js"></script>
+<script src="/bower_components/webmaker-login-ux/dist/min/webmakerLogin.min.js"></script>
+<script id="require-js" src="/bower_components/requirejs/require.js"
+  data-main="{% block require_main %}/js/main.js{% endblock %}"
+  data-page="{% block require_page %}{% endblock %}">
+</script>
+
+{% block scripts %}{% endblock %}
+{% if ga_account %}
+<script id="google-analytics-js" src="/js/lib/google-analytics.js"
+  data-ga-account="{{ ga_account }}"
+  data-ga-domain="{{ ga_domain }}"
+  async>
+</script>
+{% endif %}
+<script src="https://cdn.optimizely.com/js/206878104.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+[
+  {
+    "id": "index",
+    "title": "Explore",
+    "icon": "fa-random",
+    "defaultUrl": "explore",
+    "pages": [
+      {
+        "id": "index",
+        "url": "explore"
+      }
+    ]
+  },
+  {
+    "id": "tools",
+    "title": "Tools",
+    "icon": "fa-hand-o-up",
+    "defaultUrl": "tools",
+    "pages": []
+  },
+  {
+    "id": "events",
+    "title": "Events",
+    "icon": "fa-map-marker",
+    "defaultUrl": "{{EVENTS_URL}}",
+    "instantiate": true,
+    "pages": []
+  },
+  {
+    "id": "teach",
+    "title": "Teach",
+    "icon": "fa-book",
+    "defaultUrl": "mentor",
+    "pages": [
+      {
+        "id": "resources",
+        "title": "Resources",
+        "url": "resources"
+      },
+      {
+        "id": "badges",
+        "title": "Badges",
+        "url": "badges"
+      },
+      {
+        "id": "hive",
+        "title": "Hive",
+        "url": "_hive"
+      }
+    ]
+  }
+]

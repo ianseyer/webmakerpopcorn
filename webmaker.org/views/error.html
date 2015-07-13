@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block title %}{{ gettext("Error") }} - {{code}}{% endblock %}
+{% block body %}
+<div class="ui-wrapper ui-body">
+  <div class="ui-poster error-container">
+    <div class="error-code">
+      <img class="error-img" src="/img/webmaker-404.png">
+    </div>
+    <div>
+      {% if code == 404 %}
+      {{ gettext("error-404") | instantiate | safe }}
+      {% else %}
+      {{code}}: {{message}}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

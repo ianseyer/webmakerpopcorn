@@ -1,0 +1,178 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Make Editor</title>
+    <meta name="csrf-token" content="{{csrf}}" >
+    <meta name="is_collaborator" content="{{iscollaborator}}">
+    <meta name="webmaker_hostname" content="{{audience}}">
+    <link rel="stylesheet" type="text/css" href="stylesheets/admin.css" >
+    <link rel="stylesheet" type="text/css" href="stylesheets/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css" >
+    <link rel="stylesheet" type="text/css" href="stylesheets/font-awesome.min.css" >
+    <link rel="stylesheet" type="text/css" href="stylesheets/slick.grid.css" >
+    <link rel="stylesheet" type="text/css" href="stylesheets/slick.pager.css" >
+    <link rel="stylesheet" href="/bower/nav-global/nav.css" />
+    <link rel="stylesheet" href="/bower/persona-btn/persona-btn.css" />
+  </head>
+  <body>
+
+    <div id="webmaker-nav">
+      <nav class="webmaker-nav-container">
+        <a id="logo" href="https://webmaker.org"><img src="{{login}}/img/webmaker-logo.png" alt="Mozilla Webmaker" /></a>
+        <ul class="webmaker-nav user-info">
+          <li class="user">
+            Hi <span id="identity" class="user-name-container"></span>
+          </li>
+          <li>
+            <span class="webmaker-logout">Sign out</span>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="container">
+      <form class="form-horizontal">
+        <fieldset>
+          <div class="control-group">
+            <label class="control-label" for="filter-type">Seach By:</label>
+            <div class="controls">
+              <select id="filter-type" name="filter-type" class="input-xlarge">
+                <option value="title" selected>Title</option>
+                <option value="user">User</option>
+                <option value="description">Description</option>
+                <option value="tags">Tags</option>
+                <option value="tagPrefix">Tag Prefix</option>
+                <option value="url">URL</option>
+              </select>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="search-tag">Search For:</label>
+            <div class="controls">
+              <input id="search-tag" name="search-tag" title="PROTIP: empty === get all makes" placeholder="empty gets all makes" class="input-large" type="text">
+            </div>
+          </div>
+          <div class="control-group" >
+            <label class="control-label" for="sort-by-report">Sort By:</label>
+            <div class="controls">
+              <input id="sort-by-updated" value="updatedAt" name="sort-by" title="Select to sort by last updated time" type="radio" checked>
+              <label for="sort-by-updated" class="sort-label">&nbsp;Updated At</label><br />
+              <input id="sort-by-report" value="reports" name="sort-by" title="Select to sort bycreation most reports" type="radio">
+              <label for="sort-by-report" class="sort-label">&nbsp;Report Count</label><br />
+              <input id="sort-by-likes" value="likes" name="sort-by" title="Select to sort by total like count per make" type="radio">
+              <label for="sort-by-likes" class="sort-label">&nbsp;Like Count</label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="search"></label>
+            <div class="controls">
+              <button id="search" type="button" name="search" class="btn btn-success">Search</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <span class="error-message hidden red-text" id="error-message"></span>
+    <div class="data-table-area" id="data-table-area"></div>
+    <div class="paging">
+      <span class="paging-nav">
+        <span id="nav-first" class="nav-icon nav-icon-left icon-fast-backward" title="First Page"></span>
+        <span id="nav-previous" class="nav-icon icon-backward" title="Previous Page"></span>
+        <span id="nav-next" class="nav-icon icon-forward" title="Next Page"></span>
+        <span id="nav-last" class="nav-icon icon-fast-forward" title="Last Page"></span>
+        <span id="nav-status"  class="nav-status">Page 1 of 1</span>
+        <span class="nav-go-to">
+          <input type="number" id="nav-go-to-page">
+          <button class="nav-btn" id="nav-go-to-page-btn">Go</button>
+        </span>
+        <span class="nav-loading icon-spinner icon-spin spin-hidden" id="nav-loading"></span>
+      </span>
+      <span class="nav-paging-settings">
+        <span>Results per page: </span>
+        <span class="nav-page-total-setting" id="nav-25" data-value="25">25</span>
+        <span class="nav-page-total-setting" id="nav-50" data-value="50">50</span>
+        <span class="nav-page-total-setting selected" id="nav-100" data-value="100">100</span>
+      </span>
+    </div>
+    <hr />
+    <form class="form-horizontal">
+      <fieldset>
+        <h3 class="remix-count-header"> Remix Count </h3>
+        <div class="control-group">
+          <label class="control-label" for="remix-count-id">Make ID:</label>
+          <div class="controls">
+            <input id="remix-count-id" disabled="true" name="id" placeholder="CLICK AN ID IN THE TABLE ABOVE" class="input-xlarge" type="text">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="remix-count-from">From:</label>
+          <div class="controls">
+            <input id="remix-count-from" type="text" name="remix-count-from" class="input-large"></input>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="remix-count-to">To:</label>
+          <div class="controls">
+            <input id="remix-count-to" type="text" name="remix-count-to" class="input-large"></input>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="get-count"></label>
+          <div class="controls">
+            <button id="get-count" type="button" name="get-count" class="btn btn-success">Get Remix Count</button>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">Count:</label>
+          <div class="controls">
+          <label class="control-label" id="remix-count-result"></label>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    {% if iscollaborator == 0 %}
+      <hr />
+      <form class="form-horizontal">
+        <fieldset>
+          <div class="control-group">
+            <label class="control-label" for="app-contact">Contact Email:</label>
+            <div class="controls">
+              <input id="app-contact" name="app-contact" placeholder="Contact Email" class="input-large" type="text">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="app-domain">Domain:</label>
+            <div class="controls">
+              <input id="app-domain" name="app-domain" placeholder="Domain" class="input-large" type="text">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="add-app"></label>
+            <div class="controls">
+              <button id="add-app" type="button" name="add-app" class="btn btn-success">Add App</button>
+            </div>
+          </div>
+          <div class="control-group">
+            <label for="app-result" class="control-label"></label>
+            <textarea id="app-result" class="input-xlarge"></textarea>
+          </div>
+        </fieldset>
+      </form>
+      {% endif %}
+    <script src="{{personaHostname}}/include.js"></script>
+    <script src="js/external/jquery.min.js"></script>
+    <script src="js/external/jquery-ui.min.js"></script>
+    <script src="js/external/jquery.event.drag-2.2.js"></script>
+    <script src="js/external/slick.core.js"></script>
+    <script src="js/external/slick.grid.js"></script>
+    <script src="js/external/slick.editors.js"></script>
+    <script src="js/external/slick.dataview.js"></script>
+    <script src="js/make-api.js"></script>
+    <script src="bower/webmaker-auth-client/dist/webmaker-auth-client.min.js"></script>
+    <script src="js/admin.js"></script>
+  </body>
+</html>

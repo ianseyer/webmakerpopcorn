@@ -1,0 +1,140 @@
+<div class="mainContainer">
+  <section id="front-page-intro" class="container">
+    <h1>{{ 'explore_frontpage_title' | i18n }}</h1>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <h2 class="text-primary">{{ 'Discover creative ways to teach and learn digital superpowers' | i18n }}</h2>
+
+        <p>
+          <span bind-unsafe-html="'Get involved with webmaker' | i18n"></span>
+        </p>
+      </div>
+      <div class="hidden-xs col-sm-6 col-lg-4 col-lg-offset-1">
+        <img src="/img/explore-map.svg"
+             alt="The Web Literacy Map helps you build literacy in exploring, building, and sharing the web"
+             class="animated slideInDown" />
+      </div>
+    </div>
+  </section>
+
+  <section id="front-page-teaching-kits">
+    <div class="container">
+      <div class="row flex-center">
+        <div class="hidden-xs col-sm-5">
+          <img src="#" class="teaching-kits-img" retina-image
+               data-src-1x="/img/explore/explore-teaching-kits.png"
+               data-src-2x="/img/explore/explore-teaching-kits-2x.png"
+               width="372" height="278"/>
+        </div>
+        <div class="col-sm-7 col-lg-6">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h2 class="text-primary">
+                {{ 'Resources for teaching the web' | i18n }}</h2>
+
+              <p bind-unsafe-html="'Resources section description' | i18n"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="front-page-tools" class="container">
+    <h2 class="text-primary">
+      {{ 'Free tools that make it easy to create and learn' | i18n }}
+    </h2>
+
+    <p>
+      <span bind-unsafe-html="'Tools description' | i18n"></span>
+    </p>
+
+    <div class="panel panel-default panel-tools">
+      <div class="panel-body text-center">
+        <div class="row">
+          <div class="tool">
+            <a href="https://goggles.webmaker.org/{{ lang }}">
+              <h3 class="xray-goggles">{{ 'X-Ray Goggles' | i18n }}</h3>
+            </a>
+
+            <p>{{ 'X-Ray Desc' | i18n }}</p>
+          </div>
+          <div class="tool">
+            <a href="https://thimble.webmaker.org/{{ lang }}">
+              <h3 class="thimble">{{ 'Thimble' | i18n }}</h3>
+            </a>
+
+            <p>{{ 'Thimble Desc' | i18n }}</p>
+          </div>
+          <div class="tool">
+            <a href="https://popcorn.webmaker.org/{{ lang }}">
+              <h3 class="popcorn-maker">{{ 'Popcorn Maker'}}</h3>
+            </a>
+
+            <p>{{ 'Popcorn Maker Desc'| i18n }}</p>
+          </div>
+          <div class="tool">
+            <a href="https://apps.webmaker.org/{{ lang }}/designer">
+              <h3 class="appmaker">{{ 'Appmaker' | i18n }}</h3>
+            </a>
+            <p>{{ 'Appmaker Desc' | i18n }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section-pull-up">
+      <div class="row">
+        <div class="col-sm-3">
+        <figure class="learn-image-explore">
+          <img src="/img/explore/img-explore-mentor.jpg" class="img-circle img-page-info"/>
+           <figcaption class="caption"><i class="fa fa-camera"></i> <a href="https://www.flickr.com/photos/newyouthcity/9613074255">HiveLearningNYC</a></figcaption>
+          </figure>
+        </div>
+        <div class="col-md-9 col-lg-7">
+          <h2 class="text-primary">{{ 'Make. Learn. Get together.' | i18n }}</h2>
+          <p ng-bind-html="'make-learn-teach-section-info' | i18n"></p>
+          <p class="section-pull-down">
+            <a href="{{ eventsUrl }}" class="btn-events btn btn-lg btn-primary"><span class="fa fa-search"></span> {{ 'Find an event' | i18n }}</a>
+            <a href="{{ eventsUrl }}/add" class="btn-events btn btn-lg btn-primary"><span class="fa fa-plus"></span> {{ 'Add an event' | i18n }}</a>
+          </p>
+        </div>
+      </div>
+  </section>
+
+  <section id="front-page-contribute" class="container">
+    <h2 class="text-primary">{{ 'Contribute to Webmaker' | i18n }}</h2>
+
+    <p>
+      <span bind-unsafe-html="'Contribute subsection copy' | i18n"></span>
+    </p>
+
+    <div class="row">
+      <div class="col-sm-6 col-lg-4 contribute-box"
+           ng-repeat="box in contributeBoxes">
+        <a href="{{ box.target }}">
+          <div class="contribute-box-body">
+            <div>
+              <h2><span class="fa fa-{{box.icon}}"></span></h2>
+
+              <h2>{{box.title | i18n }}</h2>
+
+              <p>{{box.description | i18n }}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="front-page-where-to-start">
+    <div class="container">
+      <h2 class="text-primary">{{ 'Footer header' | i18n }}</h2>
+
+      <p bind-unsafe-html="'Footer copy' | i18n"></p>
+    </div>
+  </section>
+</div>
+<div ng-include="'/views/partials/footer.html'"></div>

@@ -1,0 +1,22 @@
+{% include "make-templates/macros.html" %}
+
+<div class="make make-starter-make medium gallery-hide">
+  <a href="{{make.remixurl}}">
+    <div class="make-thumbnail thumbnail" style="background-image: url({{make.thumbnail}});"></div>
+    <div class="make-back">
+      <div class="desc">
+        <h3><a class="title" href="{{make.url}}">{{make.title}}</a></h3>
+        <p class="meta-data-text">{{ "Created by" | gettext }} <a class="author" href="/u/{{make.username}}">@{{make.username}}</a>
+          <span class="date">{{make.createdAt}}</span>, {{ likeText() }}
+        </p>
+        <p class="description">{{make.description}}</p>
+      </div>
+      {{ makeTags() }}
+      <div class="btn-container">
+        <a class="ui-btn fork-btn fork-btn-label" href="{{make.remixurl}}"><span class="fa fa-code-fork"></span> {{ "Remix" | gettext }}</a>
+        {{ likeIcon() }}
+      </div>
+    </div>
+  </a>
+</div>
+

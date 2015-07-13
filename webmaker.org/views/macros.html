@@ -1,0 +1,21 @@
+{% macro galleryHeader(header, desc, options) %}
+<div class="gallery-header">
+  <div class="ui-wrapper">
+    <div class="{% if desc %}g-6{% endif %} header">
+      <h1>{{ header | safe }}</h1>
+      {% if desc %}<p> {{ desc | instantiate |safe }}</p>{% endif %}
+    </div>
+    {% if options.length %}
+    <div class="g-2 filter hide">
+      <form action="/search" id="gallery-search">
+        <input type="search" placeholder="{{gettext('Search gallery')}}" name="q" results="5"/>
+        <input type="hidden" name="type" value="all"/>
+        <button type="submit" aria-label="Search">
+          <span class="fa fa-search"></span>
+        </button>
+      </form>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endmacro %}

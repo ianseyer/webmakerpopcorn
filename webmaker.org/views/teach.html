@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% include 'macros.html' %}
+
+{% block title %}{{ gettext("Teach") }}{% endblock %}
+{% block midbar %}
+
+{% set header = gettext("teachHeader")  %}
+{% set des = gettext("teachDesc")  %}
+{% set desc = des + "<a href='/{{localeInfo.lang}}/literacy'><br><button class='ui-blue-btn'><i class='fa fa-file'></i>{{ gettext('TeachWebLitButton') }}</button></a> <a href='https://sendto.mozilla.org/page/s/mentor-signup'><button class='ui-blue-btn'>{{ gettext('Sign up') }}</button></a>" %}
+
+{{ galleryHeader(header, desc) }}
+{% endblock %}
+{% block body %}
+<div class="ui-wrapper">
+  {% include "gallery.html" %}
+</div>
+{% endblock %}
+{% block CTA %}
+  [{
+    "title": "{{ gettext("Become a Mentor") }}",
+    "desc": "{{ gettext("Become a Mentor Desc") }}",
+    "image": "/img/cta-Mentor.jpg",
+    "url": "/{{localeInfo.lang}}/mentor"
+  },
+  {
+    "title": "{{ gettext("Maker Party") }}",
+    "desc": "{{ gettext("Maker Party Desc") }}",
+    "image": "/img/cta-Party.jpg",
+    "url": "http://party.webmaker.org/{{localeInfo.lang}}"
+  },
+  {
+    "title": "{{ gettext("Get Involved") }}",
+    "desc": "{{ gettext("Get Involved Desc") }}",
+    "image": "/img/cta-Get-Involved.jpg",
+    "url": "/{{localeInfo.lang}}/getinvolved"
+  },
+  {
+    "title": "{{ gettext("Use our Tools") }}",
+    "desc": "{{ gettext("Use our Tools Desc") }}",
+    "image": "/img/cta-Tools.jpg",
+    "url": "/{{localeInfo.lang}}/tools"
+  }]
+{% endblock %}
+{% block require_page %}pages/teach{% endblock %}

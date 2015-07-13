@@ -1,0 +1,25 @@
+language: node_js
+node_js:
+- '0.12'
+- iojs
+sudo: false
+cache:
+  directories:
+  - node_modules
+addons:
+  postgresql: "9.4"
+before_script:
+ - psql -c 'create database webmaker_testing' -U postgres
+after_script:
+ - npm run test:reportcoverage
+env: POSTGRE_CONNECTION_STRING='postgres://postgres@localhost:5432/webmaker_testing'
+deploy:
+  provider: heroku
+  api_key:
+    secure: "GacCI1+UxUg27T3STVNk/XZ5h/hStoUp9CWPm3TsXIlnYdKRHImVFMleDBlVIFOroApI8HCfIs1vp+hkmk3at5mpjmV2J1DT8xNZfZTHJQXk3iKaQYDTAeEY5yBFUM5xTn9sI9uItNup1G3kJSledzkunR434NXNyaHImxFYjMo="
+  app:
+    develop: webmaker-api
+    master: webmaker-api-production
+  on:
+    repo: mozilla/api.webmaker.org
+    node: '0.12'

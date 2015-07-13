@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- For sharing & search engines -->
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://webmaker.org/img/logo-og.png" />
+  <meta property="og:image:width" content="1400" />
+  <meta property="og:image:height" content="1400" />
+  <meta property="og:site_name" content="Webmaker" />
+  <meta property="og:locale" content="{{ localeInfo.lang | replace('-', '_') }}" />
+  {% for language in languages %}
+  <meta property="og:locale:alternate" content="{{ language | replace('-', '_') }}" />{% endfor %}
+  <meta property="og:title" content="{{ gettext("Download Webmaker") }}" />
+  <meta property="og:description" content="{{ gettext("Strips away complexity") }}" />
+  <meta property="og:url" content="https://webmaker.org/{{ localeInfo.lang }}{{ currentPath }}" />
+
+  <link rel="canonical" href="https://webmaker.org/{{ localeInfo.lang }}{{ currentPath }}" />
+  <meta property="description" content="{{ gettext("Strips away complexity") }}" />
+  <!-- /sharing -->
+  <link rel="stylesheet" href="/css/style.{{ localeInfo.direction }}.css">
+
+  <meta name="csrf-token" content="{{ csrf }}">
+
+  <title>{{ gettext("Download Webmaker") }}</title>
+
+  <link rel="icon" type="image/png" href="/img/favicon.ico">
+</head>
+<body class="install-webmaker-app">
+
+<div id="webmaker-nav">
+  <nav class="navbar navbar-webmaker">
+    <div class="container">
+      <div class="navbar-header">
+        <a href="/{{localeInfo.lang}}" class="logo webmaker-logo">
+          <img src="/img/logo.png" alt="{{ gettext("Mozilla Webmaker") }}">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% macro preview(image) %}
+<div class="phone-preview">
+  <img src="/img/app-install/top-phone.png">
+  <img class="preview-image" src="{{image}}">
+  <img src="/img/app-install/bottom-phone.png">
+</div>
+{% endmacro %}
+
+<div class="outer first">
+  <div class="flex-container">
+    <div class="left">
+      {{ preview('/img/app-install/templates@2x.gif') }}
+    </div>
+    <div class="right">
+      <h2>{{ gettext("Become a Maker") }}</h2>
+      <p class="lead">{{ gettext("Strips away complexity") }}</p>
+      <p class="platforms">{{ gettext("Available for") }}</p>
+      <div class="nudge get-app-container">
+        <button id="get-app" class="btn btn-neue desktop-only">
+          {{ gettext("Get App") }}</span>
+        </button>
+        <a href="http://mzl.la/installwm" class="btn btn-neue mobile-only download-app-btn">
+          {{ gettext("Download Webmaker")}}
+        </a>
+        <div id="sms-form" class="hidden">
+          <p class="text-left">{{ gettext("Enter your phone number")}}</p>
+          <div class="input-group">
+            <input class="form-control phone-num-input" type="tel" name="" value="">
+            <span class="input-group-btn">
+              <button class="btn btn-neue send-sms-btn">{{ gettext("Send Text") }}</button>
+            </span>
+          </div>
+          <p class="help-text phone-error hidden">{{ gettext("phone format error") }}</p>
+          <p class="small twilio-privacy-message">{{ gettext("sms privacy message") | safe }}</p>
+        </div>
+      </div>
+      <p class="message-sent-error-container hidden">{{ gettext("message sent error") }}</p>
+      <p id="message-sent" class="hidden">
+        {{ gettext("message sent") }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="outer second">
+  <div class="flex-container">
+    <div class="left">
+      <h2>{{ gettext("Build the Perfect App") }}</h1>
+      <p class="lead">{{ gettext("Exactly what you need") }}</p>
+    </div>
+    <div class="right text-right">
+      {{ preview('/img/app-install/editor@2x.gif') }}
+    </div>
+  </div>
+</div>
+
+<div class="outer third">
+  <div class="flex-container">
+    <div class="left">
+      {{ preview('/img/app-install/share@2x.gif') }}
+    </div>
+    <div class="right">
+      <h2>{{ gettext("Share It with the World") }}</h1>
+      <p class="lead">{{ gettext("Meant to be seen") }}</p>
+    </div>
+  </div>
+  <div class="bottom-download-btn mobile-only nudge text-center download-app-btn">
+    <a href="http://mzl.la/installwm" class="btn btn-neue">
+      {{ gettext("Download Webmaker")}}
+    </a>
+  </div>
+</div>
+
+
+<footer class="footer">
+  <div class="partnerWrapper">
+    <nav class="navbar-footer">
+      <div class="container">
+        <ul>
+          <li><a href="/{{localeInfo.lang}}/about">{{ gettext("About") }}</a></li>
+          <li><a href="/{{localeInfo.lang}}/mentor">{{ gettext("Teach") }}</a></li>
+          <li>
+            <a href="https://sendto.mozilla.org/page/contribute/join-mozilla?source=join_link">
+              {{ gettext("Donate") }}
+            </a>
+          </li>
+          <li><a href="mailto:help@webmaker.org">{{ gettext("Contact") }}</a></li>
+          <li><a href="https://www.mozilla.org/privacy/websites">{{ gettext("Privacy") }}</a></li>
+          <li><a href="/{{localeInfo.lang}}/terms">{{ gettext("Legal") }}</a></li>
+          <li>
+            <a href="https://support.mozilla.org/products/webmaker">
+              {{ gettext("Help") }}
+            </a>
+          </li>
+        </ul>
+
+        <ul class="secondary">
+          <li><span class="fa fa-twitter"></span>
+            <a href="https://twitter.com/webmaker">
+              @webmaker
+            </a>
+          </li>
+          <li><span class="fa fa-file-text-o"></span>
+            <a href="https://blog.webmaker.org">
+              {{ gettext("Blog") }}
+            </a>
+          </li>
+        </ul>
+
+        <div class="moz-logo">
+          <a href="https://mozilla.org/">
+            <img src="/img/logo-mozilla-white.png" alt="mozilla logo" height="41" width="100"/>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</footer>
+
+<script id="require-js" src="/bower_components/requirejs/require.js"
+  data-main="/js/pages/install-app.js"
+  async>
+</script>
+
+{% if ga_account %}
+<script id="google-analytics-js" src="/js/lib/google-analytics.js"
+  data-ga-account="{{ ga_account }}"
+  data-ga-domain="{{ ga_domain }}"
+  async>
+</script>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="{{ localeInfo.lang }}" dir="{{ localeInfo.direction }}">
+  <head>
+    <title>{{make.title}}</title>
+    {{ newrelic.getBrowserTimingHeader() | safe }}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="{{make.description}}">
+    <meta property="og:image" content="{{make.thumbnail}}">
+    <meta property="og:site_name" content="Mozilla Webmaker">
+    <meta property="og:title" content="{{make.title}}">
+    <meta property="og:type" content="website">
+    <meta property="og:updated_time" content="{{make.updatedAt}}">
+    <meta property="og:url" content="{{vanityURL}}">
+
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/static/stylesheets/makedetails.css">
+
+    <script src="https://cdn.optimizely.com/js/206878104.js"></script>
+  </head>
+  <body>
+    <div class="make-details-page">
+      <div class="make-details hide">
+        <iframe id="make-details-iframe" data-src="{{WEBMAKERORG}}/details/?id={{make.id}}"></iframe>
+      </div>
+      <div class="make-bar">
+        <div class="make-bar-wrapper">
+          <span class="make-bar-logospan">
+            <a class="make-bar-link" href="{{WEBMAKERORG}}">
+              <img src="/static/images/logo_small.png" alt="Mozilla Webmaker">
+            </a>
+            <span class="make-bar-made-with">
+              {{ gettext("Made with Webmaker") | safe }}
+            </span>
+          </span>
+          <span class="make-bar-expand-collapse">
+            {{ gettext("Details") }}<img src="/static/images/icon-arrow-down.png">
+          </span>
+          <div class="make-bar-button">
+            <a href="{{vanityURL}}/remix" target="_blank" class="make-bar-button-remix make-bar-link"><span>{{ gettext("Remix") }}</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="embed-container {{ "popcorn" if make.contentType == "application/x-popcorn" }}">
+      <div class="embed-wrapper">
+        <div class="embed-padding">
+          <iframe class="embed-iframe" src="{{vanityURL}}_" mozallowfullscreen webkitallowfullscreen allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <script src="/static/bower/jquery/jquery.min.js"></script>
+    <script src="/static/bower/webmaker-analytics/analytics.js"></script>
+    <script src="/static/js/detailsBar.js" async></script>
+    {% if make.contentType == "application/x-popcorn" %}
+      <script src='/static/js/resizeHandler.js'></script>
+    {% endif %}
+    {% if GA_ACCOUNT %}
+    <script src="/dynamic/js/googleanalytics.js"></script>
+    {% endif %}
+  </body>
+</html>

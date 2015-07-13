@@ -1,0 +1,21 @@
+{% include "make-templates/macros.html" %}
+
+<div class="make me-make medium make-type-{{make.type}}">
+  <a class="make-link" target="_blank" href="{{make.url}}">
+    <div class="make-thumbnail{% if make.thumbnail %} thumbnail" style="background-image:url({{make.thumbnail}});{% endif %}"></div>
+    <div class="type-label"><span class="make-type">{{make.type}}</span></div>
+    <div class="make-info">
+      <p class="updatedAt">
+        {{ "Updated" | gettext }} {{make.updatedAt}}, {{ likeText() }}
+        {% if make.published == false %}
+          , {{ "unpublished" | gettext }}
+        {% endif %}
+      </p>
+      <p class="title">{{make.title}}</p>
+    </div>
+    <div class="btn-container">
+      {% if make.editurl %}<a href="{{make.editurl}}" target="_blank" class="ui-btn view-btn"><span class="fa fa-pencil"></span></a>{% endif %}
+      <button type="submit" data-make-id="{{make._id}}" class="ui-btn delete-btn"><span class="fa fa-trash-o"></span></button>
+    </div>
+  </a>
+</div>

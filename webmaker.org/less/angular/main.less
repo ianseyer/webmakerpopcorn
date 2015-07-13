@@ -1,0 +1,77 @@
+@import "../../bower_components/makerstrap/less/makerstrap";
+@makerstrap-bower-path: "../../bower_components";
+
+// Animations
+@import (less) "../../bower_components/animate.css/animate.css";
+
+// Selectize
+@import "../../bower_components/selectize/dist/less/selectize";
+@import "../../bower_components/selectize/dist/less/selectize.bootstrap3";
+
+// Font Awesome
+@import "../../bower_components/font-awesome/less/font-awesome";
+@fa-font-path: "/bower_components/font-awesome/fonts";
+
+/*********************************************************
+* Sections
+*/
+
+@import 'components/all';
+@import 'pages/all';
+
+@ok: "\f00c";
+@import '../badges-list';
+
+
+/*********************************************************
+* Resets
+*/
+
+html, body {
+  display: block;
+  height: 100%;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+header {
+  z-index: 1;
+}
+
+/*********************************************************
+* Base
+*/
+
+[ng-cloak],
+.ng-cloak {
+  display: none !important;
+}
+
+.section-header {
+  .page-header;
+  border-bottom: none;
+}
+
+h1, h2 {
+  .text-light;
+}
+
+.container-push-down {
+  margin-top: @grid-gutter-width;
+}
+
+/*********************************************************
+* Home
+*/
+
+.explore-jumbotron {
+  background: white;
+  color: #555;
+  padding-top: 80px;
+  h1 {
+    font-size: 50px;
+  }
+}
